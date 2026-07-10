@@ -49,10 +49,12 @@ jobs:
       - name: Post review comment
         if: success()
         uses: actions/github-script@v7
+        env:
+          REVIEW_BODY: ${{ steps.analyze.outputs.review_body }}   # 用环境变量传递
         with:
           script: |
-            const reviewBody = `${{ steps.analyze.outputs.review_body }}`;
-            if (reviewBody.trim()) {
+            const reviewBody = process.env.REVIEW_BODY;
+            if (reviewBody && reviewBody.trim()) {
               await github.rest.pulls.createReview({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
