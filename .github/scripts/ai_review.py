@@ -13,7 +13,6 @@ with open(diff_file, "r") as f:
 # Note: Antigravity lets you call any model via the Anthropic SDK
 response = client.messages.create(
     model="claude-sonnet-4-6",
-    max_tokens=1024,
     messages=[
         {
             "role": "system",
@@ -25,7 +24,7 @@ response = client.messages.create(
         }
     ],
     temperature=0.0,                # 严谨审查建议用 0
-    max_tokens=2048,
+    max_tokens=1024,
 )
 
 print(response.content[0].text)
