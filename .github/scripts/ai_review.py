@@ -11,7 +11,7 @@ with open(diff_file, "r") as f:
     diff_content = f.read()
 
 # Note: Antigravity lets you call any model via the Anthropic SDK
-response = client.messages.create(
+response = client.chat.completions.create(
     model="claude-sonnet-4-6",
     messages=[
         {
